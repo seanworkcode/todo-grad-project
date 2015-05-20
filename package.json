@@ -1,0 +1,27 @@
+{
+  "name": "todo-grad-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:joebandenburg/todo-grad-project.git"
+  },
+  "author": "Joe Bandenburg <joe@bandenburg.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joebandenburg/todo-grad-project/issues"
+  },
+  "homepage": "https://github.com/joebandenburg/todo-grad-project",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.2.5"
+  }
+}
