@@ -63,7 +63,6 @@ module.exports = function(port) {
         }
     });
 
-
     function getTodo(id) {
         return todos.filter(function(todo) {
             return todo.id === id;
