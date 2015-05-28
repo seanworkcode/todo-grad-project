@@ -47,7 +47,7 @@ function reloadTodoList() {
         }
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
-            listItem.innerText = todo.title;
+            listItem.textContent = todo.title;
             todoList.appendChild(listItem);
         });
     });
