@@ -19,23 +19,29 @@ module.exports = function(grunt) {
             }
         },
         mocha_istanbul: {
-            coverage: {
+            test: {
+                src: ["test/**/*.js"]
+            },
+            ci: {
                 src: ["test/**/*.js"],
                 options: {
-                    coverageFolder: artifactsLocation,
-                    check: {
-                        lines: 100,
-                        statements: 100,
-                        branches: 100,
-                        functions: 100
-                    },
-                    reportFormats: ["lcov"]
+                    quiet: true
                 }
+            },
+            options: {
+                coverageFolder: artifactsLocation,
+                check: {
+                    lines: 100,
+                    statements: 100,
+                    branches: 100,
+                    functions: 100
+                },
+                reportFormats: ["lcov"]
             }
         }
     });
 
-    grunt.registerTask("test", ["mochaTest:test", "mocha_istanbul"]);
-    grunt.registerTask("ci-test", ["mochaTest:ci", "mocha_istanbul"]);
+    grunt.registerTask("test", ["mochaTest:test", "mocha_istanbul:test"]);
+    grunt.registerTask("ci-test", ["mochaTest:ci", "mocha_istanbul:ci"]);
     grunt.registerTask("default", "test");
 };
