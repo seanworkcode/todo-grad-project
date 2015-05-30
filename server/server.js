@@ -24,31 +24,6 @@ module.exports = function(port) {
         res.json(todos);
     });
 
-    app.get("/api/todo/:id", function(req, res) {
-        var id = req.params.id;
-        var todo = getTodo(id);
-        if (todo) {
-            res.json(todo);
-        } else {
-            res.sendStatus(404);
-        }
-    });
-
-    // Update
-    app.post("/api/todo/:id", function(req, res) {
-        var id = req.params.id;
-        var todo = getTodo(id);
-        var newTodo = req.body;
-        newTodo.id = id;
-        if (todo) {
-            var index = todos.indexOf(todo);
-            todos[index] = newTodo;
-            res.sendStatus(200);
-        } else {
-            res.sendStatus(404);
-        }
-    });
-
     // Delete
     app.delete("/api/todo/:id", function(req, res) {
         var id = req.params.id;
