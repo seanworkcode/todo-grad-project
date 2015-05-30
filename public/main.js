@@ -1,6 +1,7 @@
 var todoList = document.getElementById("todo-list");
 var form = document.getElementById("todo-form");
 var todoTitle = document.getElementById("new-todo");
+var error = document.getElementById("error");
 
 form.onsubmit = function(event) {
     var title = todoTitle.value;
@@ -22,7 +23,7 @@ function createTodo(title, callback) {
         if (this.status === 200) {
             callback();
         } else {
-            throw new Error("Failed to create TODO item. Server returned " + this.status + " - " + this.responseText);
+            error.textContent = "Failed to create item. Server returned " + this.status + " - " + this.responseText;
         }
     };
 }
@@ -34,7 +35,7 @@ function getTodoList(callback) {
         if (this.status === 200) {
             callback(JSON.parse(this.responseText));
         } else {
-            throw new Error("Failed to get TODO list. Server returned " + this.status + " - " + this.responseText);
+            error.textContent = "Failed to get list. Server returned " + this.status + " - " + this.responseText;
         }
     };
     createRequest.send();

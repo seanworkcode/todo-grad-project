@@ -4,5 +4,8 @@
   "immed": true,
   "quotmark": "double",
   "undef": true,
-  "browser": true
+  "browser": true,
+  "globals": {
+    "console": true
+  }
 }
