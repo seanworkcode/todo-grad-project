@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("grunt-jscs");
     grunt.loadNpmTasks("grunt-mocha-test");
     grunt.loadNpmTasks("grunt-mocha-istanbul");
     grunt.loadNpmTasks("grunt-coveralls");
@@ -6,6 +8,15 @@ module.exports = function(grunt) {
     var testOutputLocation = process.env.CIRCLE_TEST_REPORTS || "test_output";
     var artifactsLocation = "build_artifacts";
     grunt.initConfig({
+        jshint: {
+            all: ["Gruntfile.js", "server.js", "server/**/*.js", "test/**/*.js", "public/**/*.js"],
+            options: {
+                jshintrc: true
+            }
+        },
+        jscs: {
+            all: ["Gruntfile.js", "server.js", "server/**/*.js", "test/**/*.js", "public/**/*.js"]
+        },
         mochaTest: {
             test: {
                 src: ["test/**/*.js"]
@@ -19,7 +30,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        mocha_istanbul: {
+        "mocha_istanbul": {
             test: {
                 src: ["test/**/*.js"]
             },
@@ -47,7 +58,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask("test", ["mochaTest:test", "mocha_istanbul:test"]);
-    grunt.registerTask("ci-test", ["mochaTest:ci", "mocha_istanbul:ci", "coveralls"]);
+    grunt.registerTask("check", ["jshint", "jscs"]);
+    grunt.registerTask("test", ["check", "mochaTest:test", "mocha_istanbul:test"]);
+    grunt.registerTask("ci-test", ["check", "mochaTest:ci", "mocha_istanbul:ci", "coveralls"]);
     grunt.registerTask("default", "test");
 };

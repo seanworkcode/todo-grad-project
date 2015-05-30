@@ -1,0 +1,8 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "quotmark": "double",
+  "undef": true,
+  "browser": true
+}
