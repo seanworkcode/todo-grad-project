@@ -26,7 +26,6 @@
     "catch"
   ],
   "requireOperatorBeforeLineBreak": true,
-  "requireCamelCaseOrUpperCaseIdentifiers": true,
 
   "disallowMultipleLineStrings": true,
   "disallowTrailingWhitespace": true,
