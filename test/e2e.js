@@ -62,7 +62,7 @@ testing.describe("end to end", function() {
             });
             driver.get(baseUrl);
             var errorElement = driver.findElement(webdriver.By.id("error"));
-            driver.wait(webdriver.until.elementTextContains(errorElement, "Failed"));
+            driver.wait(webdriver.until.elementTextContains(errorElement, "Failed"), 500);
             errorElement.getText().then(function(text) {
                 assert.equal(text, "Failed to get list. Server returned 500 - Internal Server Error");
             });
@@ -81,7 +81,7 @@ testing.describe("end to end", function() {
             driver.get(baseUrl);
             driver.findElement(webdriver.By.id("new-todo")).sendKeys("New todo item");
             driver.findElement(webdriver.By.id("submit-todo")).click();
-            driver.wait(webdriver.until.elementsLocated(webdriver.By.css("#todo-list li")));
+            driver.wait(webdriver.until.elementsLocated(webdriver.By.css("#todo-list li")), 500);
             driver.findElements(webdriver.By.css("#todo-list li")).then(function(elements) {
                 assert.equal(elements.length, 1);
             });
@@ -94,7 +94,7 @@ testing.describe("end to end", function() {
             driver.findElement(webdriver.By.id("new-todo")).sendKeys("New todo item");
             driver.findElement(webdriver.By.id("submit-todo")).click();
             var errorElement = driver.findElement(webdriver.By.id("error"));
-            driver.wait(webdriver.until.elementTextContains(errorElement, "Failed"));
+            driver.wait(webdriver.until.elementTextContains(errorElement, "Failed"), 500);
             errorElement.getText().then(function(text) {
                 assert.equal(text, "Failed to create item. Server returned 500 - Internal Server Error");
             });
