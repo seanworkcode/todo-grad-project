@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-mocha-test");
     grunt.loadNpmTasks("grunt-mocha-istanbul");
+    grunt.loadNpmTasks("grunt-coveralls");
 
     var testOutputLocation = process.env.CIRCLE_TEST_REPORTS || "test_output";
     var artifactsLocation = process.env.CIRCLE_ARTIFACTS || "build_artifacts";
@@ -38,10 +39,15 @@ module.exports = function(grunt) {
                 },
                 reportFormats: ["lcov"]
             }
+        },
+        coveralls: {
+            ci: {
+                src: artifactsLocation + "/lcov.info"
+            }
         }
     });
 
     grunt.registerTask("test", ["mochaTest:test", "mocha_istanbul:test"]);
-    grunt.registerTask("ci-test", ["mochaTest:ci", "mocha_istanbul:ci"]);
+    grunt.registerTask("ci-test", ["mochaTest:ci", "mocha_istanbul:ci", "coveralls"]);
     grunt.registerTask("default", "test");
 };
