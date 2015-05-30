@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-coveralls");
 
     var testOutputLocation = process.env.CIRCLE_TEST_REPORTS || "test_output";
-    var artifactsLocation = process.env.CIRCLE_ARTIFACTS || "build_artifacts";
+    var artifactsLocation = "build_artifacts";
     grunt.initConfig({
         mochaTest: {
             test: {

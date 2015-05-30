@@ -1,3 +1,6 @@
+general:
+  artifacts:
+    - "build_artifacts"
 deployment:
   prod:
     branch: master
