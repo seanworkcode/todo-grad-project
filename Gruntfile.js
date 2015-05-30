@@ -25,7 +25,9 @@ module.exports = function(grunt) {
                     coverageFolder: artifactsLocation + "/coverage",
                     check: {
                         lines: 100,
-                        statements: 100
+                        statements: 100,
+                        branches: 100,
+                        functions: 100
                     },
                     reportFormats: ["lcov"]
                 }
