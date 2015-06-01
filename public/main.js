@@ -1,4 +1,5 @@
 var todoList = document.getElementById("todo-list");
+var todoListPlaceholder = document.getElementById("todo-list-placeholder");
 var form = document.getElementById("todo-form");
 var todoTitle = document.getElementById("new-todo");
 var error = document.getElementById("error");
@@ -42,10 +43,12 @@ function getTodoList(callback) {
 }
 
 function reloadTodoList() {
+    while (todoList.firstChild) {
+        todoList.removeChild(todoList.firstChild);
+    }
+    todoListPlaceholder.style.display = "block";
     getTodoList(function(todos) {
-        while (todoList.firstChild) {
-            todoList.removeChild(todoList.firstChild);
-        }
+        todoListPlaceholder.style.display = "none";
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
             listItem.textContent = todo.title;
