@@ -55,13 +55,13 @@ module.exports.getInputText = function(server) {
 
 module.exports.getErrorText = function(server) {
     var errorElement = server.driver.findElement(webdriver.By.id("error"));
-    server.driver.wait(webdriver.until.elementTextContains(errorElement, "Failed"), 500);
+    server.driver.wait(webdriver.until.elementTextContains(errorElement, "Failed"), 5000);
     return errorElement.getText();
 };
 
 module.exports.getTodoList = function(server) {
     var todoListPlaceholder = server.driver.findElement(webdriver.By.id("todo-list-placeholder"));
-    server.driver.wait(webdriver.until.elementIsNotVisible(todoListPlaceholder), 500);
+    server.driver.wait(webdriver.until.elementIsNotVisible(todoListPlaceholder), 5000);
     return server.driver.findElements(webdriver.By.css("#todo-list li"));
 };
 

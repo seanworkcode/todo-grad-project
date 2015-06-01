@@ -5,7 +5,7 @@ var helpers = require("./e2eHelpers");
 testing.describe("end to end", function() {
     var server;
 
-    this.timeout(10000);
+    this.timeout(20000);
 
     testing.beforeEach(function() {
         server = helpers.setupServer();
