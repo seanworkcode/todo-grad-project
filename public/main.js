@@ -21,7 +21,7 @@ function createTodo(title, callback) {
         title: title
     }));
     createRequest.onload = function() {
-        if (this.status === 200) {
+        if (this.status === 201) {
             callback();
         } else {
             error.textContent = "Failed to create item. Server returned " + this.status + " - " + this.responseText;

@@ -19,7 +19,8 @@ module.exports = function(port, middleware) {
         todo.id = latestId.toString();
         latestId++;
         todos.push(todo);
-        res.sendStatus(200);
+        res.set("Location", "/api/todo/" + todo.id);
+        res.sendStatus(201);
     });
 
     // Read

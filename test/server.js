@@ -35,7 +35,7 @@ describe("server", function() {
         });
     });
     describe("create a new todo", function() {
-        it("responds with status code 200", function(done) {
+        it("responds with status code 201", function(done) {
             request.post({
                 url: todoListUrl,
                 json: {
@@ -43,7 +43,19 @@ describe("server", function() {
                     done: false
                 }
             }, function(error, response) {
-                assert.equal(response.statusCode, 200);
+                assert.equal(response.statusCode, 201);
+                done();
+            });
+        });
+        it("responds with the location of the newly added resource", function(done) {
+            request.post({
+                url: todoListUrl,
+                json: {
+                    title: "This is a TODO item",
+                    done: false
+                }
+            }, function(error, response) {
+                assert.equal(response.headers.location, "/api/todo/0");
                 done();
             });
         });
