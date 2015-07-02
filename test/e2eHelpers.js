@@ -76,8 +76,8 @@ module.exports.setupErrorRoute = function(server, action, route) {
             res.sendStatus(500);
         });
     }
-    if (action === "put") {
-        server.router.put(route, function(req, res) {
+    if (action === "post") {
+        server.router.post(route, function(req, res) {
             res.sendStatus(500);
         });
     }

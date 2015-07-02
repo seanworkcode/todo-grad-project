@@ -15,7 +15,7 @@ form.onsubmit = function(event) {
 
 function createTodo(title, callback) {
     var createRequest = new XMLHttpRequest();
-    createRequest.open("PUT", "/api/todo");
+    createRequest.open("POST", "/api/todo");
     createRequest.setRequestHeader("Content-type", "application/json");
     createRequest.send(JSON.stringify({
         title: title

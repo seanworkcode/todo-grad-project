@@ -14,7 +14,7 @@ module.exports = function(port, middleware) {
     var todos = [];
 
     // Create
-    app.put("/api/todo", function(req, res) {
+    app.post("/api/todo", function(req, res) {
         var todo = req.body;
         todo.id = latestId.toString();
         latestId++;

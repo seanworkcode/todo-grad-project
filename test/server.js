@@ -34,9 +34,9 @@ describe("server", function() {
             });
         });
     });
-    describe("put a new todo", function() {
+    describe("create a new todo", function() {
         it("responds with status code 200", function(done) {
-            request.put({
+            request.post({
                 url: todoListUrl,
                 json: {
                     title: "This is a TODO item",
@@ -48,7 +48,7 @@ describe("server", function() {
             });
         });
         it("inserts the todo at the end of the list of todos", function(done) {
-            request.put({
+            request.post({
                 url: todoListUrl,
                 json: {
                     title: "This is a TODO item",
@@ -74,7 +74,7 @@ describe("server", function() {
             });
         });
         it("responds with status code 200", function(done) {
-            request.put({
+            request.post({
                 url: todoListUrl,
                 json: {
                     title: "This is a TODO item",

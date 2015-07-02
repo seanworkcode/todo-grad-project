@@ -54,7 +54,7 @@ testing.describe("end to end", function() {
             });
         });
         testing.it("displays an error if the request fails", function() {
-            helpers.setupErrorRoute(server, "put", "/api/todo");
+            helpers.setupErrorRoute(server, "post", "/api/todo");
             helpers.navigateToSite(server);
             helpers.addTodo(server, "New todo item");
             helpers.getErrorText(server).then(function(text) {
