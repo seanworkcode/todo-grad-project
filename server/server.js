@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 
-module.exports = function(port, middleware) {
+module.exports = function(port, middleware, callback) {
     var app = express();
 
     if (middleware) {
@@ -48,5 +48,20 @@ module.exports = function(port, middleware) {
         })[0];
     }
 
-    return app.listen(port);
+    var server = app.listen(port, callback);
+
+    // We manually manage the connections to ensure that they're closed when calling close().
+    var connections = [];
+    server.on("connection", function(connection) {
+        connections.push(connection);
+    });
+
+    return {
+        close: function(callback) {
+            connections.forEach(function(connection) {
+                connection.destroy();
+            });
+            server.close(callback);
+        }
+    };
 };
