@@ -100,7 +100,7 @@ describe("server", function() {
             });
         });
         it("removes the item from the list of todos", function(done) {
-            request.put({
+            request.post({
                 url: todoListUrl,
                 json: {
                     title: "This is a TODO item",
