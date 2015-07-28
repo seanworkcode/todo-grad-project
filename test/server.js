@@ -39,8 +39,7 @@ describe("server", function() {
             request.post({
                 url: todoListUrl,
                 json: {
-                    title: "This is a TODO item",
-                    done: false
+                    title: "This is a TODO item"
                 }
             }, function(error, response) {
                 assert.equal(response.statusCode, 201);
@@ -51,8 +50,7 @@ describe("server", function() {
             request.post({
                 url: todoListUrl,
                 json: {
-                    title: "This is a TODO item",
-                    done: false
+                    title: "This is a TODO item"
                 }
             }, function(error, response) {
                 assert.equal(response.headers.location, "/api/todo/0");
@@ -63,14 +61,12 @@ describe("server", function() {
             request.post({
                 url: todoListUrl,
                 json: {
-                    title: "This is a TODO item",
-                    done: false
+                    title: "This is a TODO item"
                 }
             }, function() {
                 request.get(todoListUrl, function(error, response, body) {
                     assert.deepEqual(JSON.parse(body), [{
                         title: "This is a TODO item",
-                        done: false,
                         id: "0"
                     }]);
                     done();
@@ -89,8 +85,7 @@ describe("server", function() {
             request.post({
                 url: todoListUrl,
                 json: {
-                    title: "This is a TODO item",
-                    done: false
+                    title: "This is a TODO item"
                 }
             }, function() {
                 request.del(todoListUrl + "/0", function(error, response) {
@@ -103,8 +98,7 @@ describe("server", function() {
             request.post({
                 url: todoListUrl,
                 json: {
-                    title: "This is a TODO item",
-                    done: false
+                    title: "This is a TODO item"
                 }
             }, function() {
                 request.del(todoListUrl + "/0", function() {
