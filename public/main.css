@@ -23,3 +23,7 @@ h1 {
     line-height: 34px;
     color: rgba(255, 255, 255, 0.87);
 }
+
+#todo-list button {
+    color:#FF0000;
+}
