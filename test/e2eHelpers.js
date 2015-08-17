@@ -82,7 +82,10 @@ module.exports.addTodo = function(text) {
 module.exports.deleteTodo = function(index) {
     var todoListPlaceholder = driver.findElement(webdriver.By.id("todo-list-placeholder"));
     driver.wait(webdriver.until.elementIsNotVisible(todoListPlaceholder), 5000);
-    driver.findElement(webdriver.By.css("#todo-list li button")).click();
+    var buttons = driver.findElements(webdriver.By.css("#todo-list li button"));
+    buttons.then(function(elements) {
+        elements[index].click();
+    });
 };
 
 module.exports.setupErrorRoute = function(action, route) {
@@ -93,6 +96,11 @@ module.exports.setupErrorRoute = function(action, route) {
     }
     if (action === "post") {
         router.post(route, function(req, res) {
+            res.sendStatus(500);
+        });
+    }
+    if (action === "delete") {
+        router.delete(route, function(req, res) {
             res.sendStatus(500);
         });
     }
