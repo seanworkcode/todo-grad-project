@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #404040;
     padding: 0.5em 1em;
 }
 
@@ -22,4 +22,8 @@ h1 {
     font-size: 34px;
     line-height: 34px;
     color: rgba(255, 255, 255, 0.87);
+}
+
+#todo-list button {
+    color:#FF0000;
 }

@@ -65,5 +65,51 @@ testing.describe("end to end", function() {
             });
         });
     });
+    testing.describe("on delete todo item", function() {
+        testing.it("removes the todo item from the list", function() {
+            helpers.navigateToSite();
+            helpers.addTodo("New todo item");
+            helpers.deleteTodo(0);
+            helpers.getTodoList().then(function(elements) {
+                assert.equal(elements.length, 0);
+            });
+        });
+        testing.it("removes the correct todo item from the list", function() {
+            helpers.navigateToSite();
+            helpers.addTodo("1");
+            helpers.addTodo("2");
+            helpers.addTodo("3");
+            helpers.deleteTodo(1);
+            helpers.getTodoList().then(function(elements) {
+                elements[0].getText().then(function(text) {
+                    assert.equal(text, "1Delete");
+                });
+                elements[1].getText().then(function(text) {
+                    assert.equal(text, "3Delete");
+                });
+            });
+        });
+        testing.it("displays an error if the request fails", function() {
+            helpers.setupErrorRoute("delete", "/api/todo/0");
+            helpers.navigateToSite();
+            helpers.addTodo("New todo item");
+            helpers.deleteTodo(0);
+            helpers.getErrorText().then(function(text) {
+                assert.equal(text, "Failed to delete item. Server returned 500 - Internal Server Error");
+            });
+        });
+        testing.it("can be done multiple times", function() {
+            helpers.navigateToSite();
+            helpers.addTodo("New todo item");
+            helpers.addTodo("Another new todo item");
+            helpers.addTodo("Yet another new todo item");
+            helpers.deleteTodo(0);
+            helpers.deleteTodo(0);
+            helpers.deleteTodo(0);
+            helpers.getTodoList().then(function(elements) {
+                assert.equal(elements.length, 0);
+            });
+        });
+    });
 });
 
