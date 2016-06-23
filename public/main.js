@@ -54,7 +54,8 @@ function reloadTodoList() {
             var deleteBtn = document.createElement("BUTTON");
             listItem.textContent = todo.title;
             deleteBtn.textContent = "Delete";
-            deleteBtn.style.color = 'red';
+            deleteBtn.style.background = "black";
+            deleteBtn.style.color = "red";
             deleteBtn.onclick = function() {
                 deleteTodo(todo);
             };
