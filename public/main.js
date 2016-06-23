@@ -55,7 +55,20 @@ function reloadTodoList() {
             var deleteButton = document.createElement("button");
             deleteButton.textContent = "delete";
             deleteButton.className = "deleteButton";
-            listItem.appendChild(deleteButton)
+            deleteButton.addEventListener("click", function(){
+                var createRequest = new XMLHttpRequest();
+                createRequest.open("DELETE", "/api/todo/"+todo.id);
+                createRequest.setRequestHeader("Content-type", "application/json");
+                createRequest.onload = function() {
+                    if (this.status === 200) {
+                        reloadTodoList();
+                    } else {
+                        error.textContent = "Failed to delete. Server returned " + this.status + " - " + this.responseText;
+                    }
+                };
+                createRequest.send();
+            });
+            listItem.appendChild(deleteButton);
             todoList.appendChild(listItem);
         });
     });
