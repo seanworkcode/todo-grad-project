@@ -1,3 +1,6 @@
+machine:
+ node:
+   version: 5.8.0
 general:
   artifacts:
     - "build_artifacts"
@@ -5,4 +8,4 @@ deployment:
   prod:
     branch: master
     heroku:
-      appname: todo-grad-project
+      appname: todo-grad-project-jameso
