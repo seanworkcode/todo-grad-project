@@ -44,7 +44,9 @@ module.exports = function(port, middleware, callback) {
     });
 
     function getTodo(id) {
-        return _.find(todos, todo => todo.id === id);
+        return _.find(todos, function(todo) {
+            return todo.id === id;
+        };
     }
 
     var server = app.listen(port, callback);
