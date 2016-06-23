@@ -56,22 +56,26 @@ function reloadTodoList() {
             deleteButton.textContent = "delete";
             deleteButton.className = "deleteButton";
             deleteButton.addEventListener("click", function(){
-                var createRequest = new XMLHttpRequest();
-                createRequest.open("DELETE", "/api/todo/"+todo.id);
-                createRequest.setRequestHeader("Content-type", "application/json");
-                createRequest.onload = function() {
-                    if (this.status === 200) {
-                        reloadTodoList();
-                    } else {
-                        error.textContent = "Failed to delete. Server returned " + this.status + " - " + this.responseText;
-                    }
-                };
-                createRequest.send();
+              deleteEntry(todo);
             });
             listItem.appendChild(deleteButton);
             todoList.appendChild(listItem);
         });
     });
+}
+
+function deleteEntry(todo){
+    var createRequest = new XMLHttpRequest();
+    createRequest.open("DELETE", "/api/todo/"+todo.id);
+    createRequest.setRequestHeader("Content-type", "application/json");
+    createRequest.onload = function() {
+        if (this.status === 200) {
+            reloadTodoList();
+        } else {
+            error.textContent = "Failed to delete. Server returned " + this.status + " - " + this.responseText;
+        }
+    };
+    createRequest.send();
 }
 
 reloadTodoList();
