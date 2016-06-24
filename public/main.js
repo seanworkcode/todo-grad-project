@@ -42,10 +42,11 @@ function getTodoList(callback) {
     createRequest.send();
 }
 
-function makeButton(content, cssClass) {
+function makeButton(content, cssClass, onClick) {
     var button = document.createElement("button");
     button.textContent = content.toString();
     button.className = cssClass.toString();
+    button.addEventListener("click", onClick);
     return button;
 }
 
@@ -58,18 +59,12 @@ function reloadTodoList() {
         todoListPlaceholder.style.display = "none";
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
-            var deleteBtn = makeButton("Delete", "delete-button");
-            var completeBtn = makeButton("Complete", "complete-button");
+            var deleteBtn = makeButton("Delete", "delete-button", deleteTodo.bind(null, todo));
+            var completeBtn = makeButton("Complete", "complete-button", completeTodo.bind(null, todo));
             listItem.textContent = todo.title;
             if (todo.isComplete) {
                 listItem.className = "completed-item";
             }
-            deleteBtn.addEventListener("click", function() {
-                deleteTodo(todo);
-            });
-            completeBtn.addEventListener("click", function() {
-                completeTodo(todo);
-            });
             listItem.appendChild(completeBtn);
             listItem.appendChild(deleteBtn);
             todoList.appendChild(listItem);
