@@ -69,16 +69,13 @@ function deleteTodo(todo) {
     var createRequest = new XMLHttpRequest();
     createRequest.open("DELETE", "/api/todo/" + todo.id);
     createRequest.setRequestHeader("Content-type", "application/json");
-    console.log("Before onLoad");
     createRequest.onload = function() {
-        console.log("vote trump");
         if (this.status === 200) {
             reloadTodoList();
         } else {
             error.textContent = "Failed to delete. Server returned " + this.status + " - " + this.responseText;
         }
     };
-    console.log("After onLoad");
     createRequest.send();
 }
 
