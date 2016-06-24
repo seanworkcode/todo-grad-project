@@ -23,3 +23,10 @@ h1 {
     line-height: 34px;
     color: rgba(255, 255, 255, 0.87);
 }
+
+.deleteButton{
+    margin-left: 10px;
+    color: white;
+    background-color: rgba(52, 114, 162, 1);
+    font-family: cursive;
+}
