@@ -37,3 +37,13 @@ h1 {
     background-color: rgba(32, 105, 33, 1);
     font-family: cursive;
 }
+
+.complete{
+    font-style: italic;
+    font-weight: normal;
+}
+
+.incomplete{
+    font-style: normal;
+    font-weight: bold;
+}

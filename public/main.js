@@ -53,22 +53,11 @@ function reloadTodoList() {
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
             listItem.textContent = todo.title;
-            listItem.style.fontStyle = todo.complete === true ? "italic" : "normal";
-            listItem.style.fontWeight = todo.complete === true ? "normal" : "bold";
+            listItem.className = todo.complete === true ? "complete" : "incomplete";
 
-            var deleteButton = document.createElement("button");
-            deleteButton.textContent = "delete";
-            deleteButton.className = "deleteButton";
-            deleteButton.addEventListener("click", function() {
-                deleteEntry(todo);
-            });
+            var deleteButton = buttonFactory("delete", "deleteButton", deleteEntry, todo);
 
-            var completeButton = document.createElement("button");
-            completeButton.textContent = "complete";
-            completeButton.className = "completeButton";
-            completeButton.addEventListener("click", function() {
-                completeEntry(todo);
-            });
+            var completeButton = buttonFactory("complete", "completeButton", completeEntry, todo);
 
             listItem.appendChild(deleteButton);
             listItem.appendChild(completeButton);
@@ -82,11 +71,7 @@ function deleteEntry(todo) {
     createRequest.open("DELETE", "/api/todo/" + todo.id);
     createRequest.setRequestHeader("Content-type", "application/json");
     createRequest.onload = function() {
-        if (this.status !== 200) {
-            error.textContent = "Failed to delete. Server returned " + this.status + " - " + this.responseText;
-            return;
-        }
-        reloadTodoList();
+        loader("Failed to delete. Server returned " + this.status + " - " + this.responseText, this.status);
     };
     createRequest.send();
 }
@@ -96,17 +81,30 @@ function completeEntry(todo) {
     createRequest.open("PUT", "/api/todo/");
     createRequest.setRequestHeader("Content-type", "application/json");
     createRequest.onload = function() {
-        if (this.status !== 200) {
-            error.textContent = "Failed to update to complete. Server returned " + this.status +
-                                " - " + this.responseText;
-            return;
-        }
-        reloadTodoList();
+        loader("Failed to update. Server returned " + this.status + " - " + this.responseText, this.status);
     };
     createRequest.send(JSON.stringify({
         id: todo.id,
         complete: true
     }));
+}
+
+function buttonFactory(name, style, listener, todo) {
+    var button = document.createElement("button");
+    button.textContent = name;
+    button.className = style;
+    button.addEventListener("click", function() {
+        listener(todo);
+    });
+    return button;
+}
+
+function loader(err, status) {
+    if (status !== 200) {
+        error.textContent = err;
+        return;
+    }
+    reloadTodoList();
 }
 
 reloadTodoList();
