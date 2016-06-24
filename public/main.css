@@ -24,19 +24,19 @@ h1 {
     color: rgba(140, 255, 83, 0.87);
 }
 
-.deleteButton {
+.delete-button {
     background-color: #9b32ff;
     color: rgba(140, 255, 83, 0.87);
     margin-left: 5px;
 }
 
-.completeButton {
+.complete-button {
     background-color: #c07fff;
     color: rgba(255, 0, 0, 0.87);
     margin-left: 10px;
 }
 
-.completedItem {
+.completed-item {
     color: rgba(255, 0, 0, 0.87);
     font-family: "Impact";
     font-weight: 900;
