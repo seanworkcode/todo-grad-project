@@ -59,9 +59,7 @@ function reloadTodoList() {
             deleteBtn.className = "deleteButton";
             completeBtn.className = "completeButton";
             if (todo.isComplete) {
-                listItem.style.color = "red";
-                listItem.style.fontFamily = "Impact";
-                listItem.style.fontWeight = "900";
+                listItem.className = "listItem";
             }
             deleteBtn.addEventListener("click", function() {
                 deleteTodo(todo);
