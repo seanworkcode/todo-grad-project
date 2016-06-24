@@ -63,7 +63,7 @@ function reloadTodoList() {
             deleteBtn.className = "deleteButton";
             completeBtn.className = "completeButton";
             if (todo.isComplete) {
-                listItem.className = "listItem";
+                listItem.className = "completedItem";
             }
             deleteBtn.addEventListener("click", function() {
                 deleteTodo(todo);
