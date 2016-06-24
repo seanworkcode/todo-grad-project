@@ -18,7 +18,8 @@ function createTodo(title, callback) {
     createRequest.open("POST", "/api/todo");
     createRequest.setRequestHeader("Content-type", "application/json");
     createRequest.send(JSON.stringify({
-        title: title
+        title: title,
+        complete: false
     }));
     createRequest.onload = function() {
         if (this.status === 201) {
