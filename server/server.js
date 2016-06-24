@@ -30,7 +30,7 @@ module.exports = function(port, middleware, callback) {
         var id = req.params.id;
         var todo = getTodo(id);
         if (todo) {
-            todo.isComplete = true;
+            todo.isComplete = !todo.isComplete;
             res.sendStatus(200);
         } else {
             res.sendStatus(404);
