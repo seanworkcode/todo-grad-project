@@ -53,7 +53,7 @@ function reloadTodoList() {
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
             listItem.textContent = todo.title;
-            listItem.className = todo.complete === true ? "complete" : "incomplete";
+            listItem.className = todo.complete ? "complete" : "incomplete";
 
             var deleteButton = buttonFactory("delete", "deleteButton", deleteEntry, todo);
 
