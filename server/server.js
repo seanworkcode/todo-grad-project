@@ -28,9 +28,10 @@ module.exports = function(port, middleware, callback) {
     // Update
     app.put("/api/todo/:id", function(req, res) {
         var id = req.params.id;
+        var complete = req.params.complete;
         var todo = getTodo(id);
         if (todo) {
-            todo.isComplete = !todo.isComplete;
+            todo.isComplete = req.body.isComplete;
             res.sendStatus(200);
         } else {
             res.sendStatus(404);
