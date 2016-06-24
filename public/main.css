@@ -30,3 +30,10 @@ h1 {
     background-color: rgba(52, 114, 162, 1);
     font-family: cursive;
 }
+
+.completeButton{
+    margin-left: 10px;
+    color: white;
+    background-color: rgba(32, 105, 33, 1);
+    font-family: cursive;
+}

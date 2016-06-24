@@ -43,16 +43,16 @@ module.exports = function(port, middleware, callback) {
         }
     });
 
-    app.put("/api/todo/", function(req,res){
+    app.put("/api/todo/", function(req, res) {
         var body = req.body;
         var id = body.id;
-        var todo = getTodo(id);
-        if(todo){
-            todoIndex = _.indexOf(todos,todo);
+        var todo = getTodo(id.toString());
+        if (todo) {
+            var todoIndex = _.indexOf(todos, todo);
             todos[todoIndex].complete = body.complete;
             res.sendStatus(200);
         }
-        else{
+        else {
             res.sendStatus(404);
         }
     });

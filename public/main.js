@@ -53,6 +53,8 @@ function reloadTodoList() {
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
             listItem.textContent = todo.title;
+            listItem.style.fontStyle = todo.complete === true ? "italic" : "normal";
+            listItem.style.fontWeight = todo.complete === true ? "normal" : "bold";
 
             var deleteButton = document.createElement("button");
             deleteButton.textContent = "delete";
@@ -61,7 +63,15 @@ function reloadTodoList() {
                 deleteEntry(todo);
             });
 
+            var completeButton = document.createElement("button");
+            completeButton.textContent = "complete";
+            completeButton.className = "completeButton";
+            completeButton.addEventListener("click", function() {
+                completeEntry(todo);
+            });
+
             listItem.appendChild(deleteButton);
+            listItem.appendChild(completeButton);
             todoList.appendChild(listItem);
         });
     });
@@ -79,6 +89,24 @@ function deleteEntry(todo) {
         reloadTodoList();
     };
     createRequest.send();
+}
+
+function completeEntry(todo) {
+    var createRequest = new XMLHttpRequest();
+    createRequest.open("PUT", "/api/todo/");
+    createRequest.setRequestHeader("Content-type", "application/json");
+    createRequest.onload = function() {
+        if (this.status !== 200) {
+            error.textContent = "Failed to update to complete. Server returned " + this.status +
+                                " - " + this.responseText;
+            return;
+        }
+        reloadTodoList();
+    };
+    createRequest.send(JSON.stringify({
+        id: todo.id,
+        complete: true
+    }));
 }
 
 reloadTodoList();
