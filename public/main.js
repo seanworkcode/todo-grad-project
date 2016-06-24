@@ -42,6 +42,12 @@ function getTodoList(callback) {
     createRequest.send();
 }
 
+function makeButton(content) {
+    var button = document.createElement("button");
+    button.textContent = content.toString();
+    return button;
+}
+
 function reloadTodoList() {
     while (todoList.firstChild) {
         todoList.removeChild(todoList.firstChild);
@@ -51,11 +57,9 @@ function reloadTodoList() {
         todoListPlaceholder.style.display = "none";
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
-            var deleteBtn = document.createElement("button");
-            var completeBtn = document.createElement("button");
+            var deleteBtn = makeButton("Delete");
+            var completeBtn = makeButton("Complete");
             listItem.textContent = todo.title;
-            deleteBtn.textContent = "Delete";
-            completeBtn.textContent = "Complete";
             deleteBtn.className = "deleteButton";
             completeBtn.className = "completeButton";
             if (todo.isComplete) {
