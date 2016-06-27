@@ -58,14 +58,14 @@ function reloadTodoList() {
             listItem.appendChild(completeButton);
             todoList.appendChild(listItem);
         });
-        var classes;
+        var classes = completeCounter.className.split(" ").filter(function(value) {
+            return value !== "hidden";
+        });
         if (count === 0) {
-            classes = completeCounter.className.split(" ");
             completeCounter.className = classes[0] + " hidden";
         }
         else {
             completeCounter.textContent = count;
-            classes = completeCounter.className.split(" ");
             completeCounter.className = classes[0];
         }
     });
