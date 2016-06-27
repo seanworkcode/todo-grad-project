@@ -28,10 +28,10 @@ h1 {
     background-color: #9b32ff;
     color: rgba(140, 255, 83, 0.87);
     margin-left: 5px;
+    margin-bottom: 5px;
 }
 
 .completed-item {
     color: rgba(255, 0, 0, 0.87);
-    font-family: "Impact";
     font-weight: 900;
 }
