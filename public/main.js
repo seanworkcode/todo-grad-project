@@ -58,9 +58,14 @@ function makeButton(content, onClick) {
 }
 
 function updateIncompletes(todos, countLabel) {
+    var anyComplete = false;
     countLabel.textContent = todos.filter(function(todo) {
+        if(todo.isComplete) {anyComplete = true;}
         return todo.isComplete === false;
     }).length.toString();
+    if(anyComplete){
+        countLabel.appendChild(makeButton("DELETE DEM", deleteCompletedTodos));
+    }
 }
 
 function reloadTodoList() {
