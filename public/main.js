@@ -52,9 +52,13 @@ function makeButton(content, cssClass, onClick) {
 }
 
 function countIncompletes(todos, countLabel) {
-    countLabel.textContent = todos.filter(function(todo) {
-        return todo.isComplete === false;
-    }).length.toString();
+    countLabel.textContent = todos.reduce(function(p, c) {
+        if (!c.isComplete) {
+            return p + 1;
+        } else {
+            return p;
+        }
+    }, 0);
 }
 
 function reloadTodoList() {
