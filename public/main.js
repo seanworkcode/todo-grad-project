@@ -43,7 +43,7 @@ function reloadTodoList() {
         todoListPlaceholder.style.display = "none";
         var count = 0;
         todos.forEach(function(todo) {
-            if(!todo.complete) {
+            if (!todo.complete) {
                 count++;
             }
             var listItem = document.createElement("li");
@@ -58,7 +58,7 @@ function reloadTodoList() {
             listItem.appendChild(completeButton);
             todoList.appendChild(listItem);
         });
-        if(count === 0 ){
+        if (count === 0) {
             completeCounter.textContent = "";
             completeCounter.className = "";
         }
