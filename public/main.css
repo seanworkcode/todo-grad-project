@@ -1,12 +1,12 @@
 body {
-    background: #E8F5E9;
+    background: rgb(96,162,145);
     color: rgba(0, 0, 0, 0.87);
     font-family: sans-serif;
     margin: 0;
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: rgb(130,0,0);
     padding: 0.5em 1em;
 }
 
@@ -22,4 +22,43 @@ h1 {
     font-size: 34px;
     line-height: 34px;
     color: rgba(255, 255, 255, 0.87);
+}
+
+.delete-button{
+    margin-left: 10px;
+    color: white;
+    background-color: rgba(52, 114, 162, 1);
+    font-family: cursive;
+}
+
+.complete-button{
+    margin-left: 10px;
+    color: white;
+    background-color: rgba(32, 105, 33, 1);
+    font-family: cursive;
+}
+
+.complete{
+    font-style: italic;
+    font-weight: normal;
+}
+
+.incomplete{
+    font-style: normal;
+    font-weight: bold;
+}
+
+.complete-count{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-family: cursive;
+    font-size: 14;
+    font-weight: bold;
+    background-color: royalblue;
+    color: white;
+}
+
+.hidden{
+    visibility: hidden;
 }

@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var _ = require("underscore");
 
 module.exports = function(port, middleware, callback) {
     var app = express();
@@ -42,10 +43,24 @@ module.exports = function(port, middleware, callback) {
         }
     });
 
+    app.put("/api/todo/", function(req, res) {
+        var body = req.body;
+        var id = body.id;
+        var todo = getTodo(id.toString());
+        if (todo) {
+            var todoIndex = _.indexOf(todos, todo);
+            todos[todoIndex].complete = body.complete;
+            res.sendStatus(200);
+        }
+        else {
+            res.sendStatus(404);
+        }
+    });
+
     function getTodo(id) {
-        return todos.filter(function(todo) {
+        return _.find(todos, function(todo) {
             return todo.id === id;
-        })[0];
+        });
     }
 
     var server = app.listen(port, callback);
