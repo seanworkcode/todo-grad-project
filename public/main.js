@@ -51,6 +51,12 @@ function makeButton(content, cssClass, onClick) {
     return button;
 }
 
+function countIncompletes(todos, countLabel) {
+    countLabel.textContent = todos.filter(function(todo) {
+        return todo.isComplete === false;
+    }).length.toString();
+}
+
 function reloadTodoList() {
     while (todoList.firstChild) {
         todoList.removeChild(todoList.firstChild);
@@ -58,9 +64,7 @@ function reloadTodoList() {
     todoListPlaceholder.style.display = "block";
     getTodoList(function(todos) {
         todoListPlaceholder.style.display = "none";
-        countLabel.textContent = todos.filter(function(todo) {
-            return todo.isComplete === false;
-        }).length.toString();
+        countIncompletes(todos, countLabel);
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
             var deleteBtn = makeButton("Delete", "delete-button", deleteTodo.bind(null, todo));
