@@ -58,7 +58,14 @@ function reloadTodoList() {
             listItem.appendChild(completeButton);
             todoList.appendChild(listItem);
         });
-        completeCounter.textContent = count !== 0 ? count : "";
+        if(count === 0 ){
+            completeCounter.textContent = "";
+            completeCounter.className = "";
+        }
+        else {
+            completeCounter.textContent = count;
+            completeCounter.className = "complete-count";
+        }
     });
 }
 
