@@ -24,6 +24,12 @@ h1 {
     color: rgba(140, 255, 83, 0.87);
 }
 
+.inCompleteCounter {
+    padding: 10px;
+    background-color: #4a412a;
+    color: white;
+}
+
 .button {
     background-color: #9b32ff;
     color: rgba(140, 255, 83, 0.87);
