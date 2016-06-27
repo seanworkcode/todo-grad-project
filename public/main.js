@@ -4,7 +4,6 @@ var form = document.getElementById("todo-form");
 var todoTitle = document.getElementById("new-todo");
 var error = document.getElementById("error");
 var countLabel = document.getElementById("count-label");
-var deleteCompleted = document.getElementById("delete-completed");
 
 form.onsubmit = function(event) {
     var title = todoTitle.value;
@@ -58,13 +57,14 @@ function makeButton(content, onClick) {
 }
 
 function updateIncompletes(todos, countLabel) {
+    countLabel.textContent = "";
     var anyComplete = false;
     countLabel.textContent = todos.filter(function(todo) {
         if (todo.isComplete) {anyComplete = true;}
         return todo.isComplete === false;
-    }).length.toString();
+    }).length.toString() + " incompleted";
     if (anyComplete) {
-        countLabel.appendChild(makeButton("DELETE DEM", deleteCompletedTodos));
+        countLabel.appendChild(makeButton("Delete Completed", deleteCompletedTodos));
     }
 }
 
