@@ -3,6 +3,7 @@ var todoListPlaceholder = document.getElementById("todo-list-placeholder");
 var form = document.getElementById("todo-form");
 var todoTitle = document.getElementById("new-todo");
 var error = document.getElementById("error");
+var countLabel = document.getElementById("count-label");
 
 form.onsubmit = function(event) {
     var title = todoTitle.value;
@@ -57,6 +58,9 @@ function reloadTodoList() {
     todoListPlaceholder.style.display = "block";
     getTodoList(function(todos) {
         todoListPlaceholder.style.display = "none";
+        countLabel.textContent = todos.filter(function(todo) {
+            return todo.isComplete === false;
+        }).length.toString();
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
             var deleteBtn = makeButton("Delete", "delete-button", deleteTodo.bind(null, todo));
