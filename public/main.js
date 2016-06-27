@@ -58,13 +58,13 @@ function reloadTodoList() {
             listItem.appendChild(completeButton);
             todoList.appendChild(listItem);
         });
+        completeCounter.className = "complete-count";
         if (count === 0) {
-            completeCounter.textContent = "";
-            completeCounter.className = "";
+            completeCounter.style.visibility = "hidden";
         }
         else {
             completeCounter.textContent = count;
-            completeCounter.className = "complete-count";
+            completeCounter.style.visibility = "visible";
         }
     });
 }
