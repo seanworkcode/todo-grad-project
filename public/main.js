@@ -58,7 +58,6 @@ function reloadTodoList() {
             listItem.appendChild(completeButton);
             todoList.appendChild(listItem);
         });
-        completeCounter.className = "complete-count";
         if (count === 0) {
             completeCounter.style.visibility = "hidden";
         }
