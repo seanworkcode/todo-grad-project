@@ -31,14 +31,14 @@ function createTodo(title, callback) {
     };
 }
 
-var requestsRunning = 0
+var requestsRunning = 0;
 function getTodoList(callback) {
     requestsRunning++;
     var createRequest = new XMLHttpRequest();
     createRequest.open("GET", "/api/todo");
     createRequest.onload = function() {
         if (this.status === 200) {
-            if (requestsRunning < 2){
+            if (requestsRunning < 2) {
                 callback(JSON.parse(this.responseText));
             }
             requestsRunning--;
@@ -103,7 +103,7 @@ function deleteTodo(todo) {
 function deleteCompletedTodos() {
     getTodoList(function(todos) {
         var completedTodoList = todos.filter(function(todo) {
-           return todo.isComplete;
+            return todo.isComplete;
         });
         completedTodoList.forEach(function(todo) {
             var createRequest = new XMLHttpRequest();
