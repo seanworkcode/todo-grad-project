@@ -49,10 +49,10 @@ function getTodoList(callback) {
     createRequest.send();
 }
 
-function makeButton(content, cssClass, onClick) {
+function makeButton(content, onClick) {
     var button = document.createElement("button");
     button.textContent = content.toString();
-    button.className = cssClass.toString();
+    button.className = "button";
     button.addEventListener("click", onClick);
     return button;
 }
@@ -73,8 +73,8 @@ function reloadTodoList() {
         updateIncompletes(todos, countLabel);
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
-            var deleteBtn = makeButton("Delete", "delete-button", deleteTodo.bind(null, todo));
-            var completeBtn = makeButton("Complete", "complete-button", completeTodo.bind(null, todo));
+            var deleteBtn = makeButton("Delete", deleteTodo.bind(null, todo));
+            var completeBtn = makeButton("Complete", completeTodo.bind(null, todo));
             listItem.textContent = todo.title;
             if (todo.isComplete) {
                 listItem.className = "completed-item";

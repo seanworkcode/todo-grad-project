@@ -24,16 +24,10 @@ h1 {
     color: rgba(140, 255, 83, 0.87);
 }
 
-.delete-button {
+.button {
     background-color: #9b32ff;
     color: rgba(140, 255, 83, 0.87);
     margin-left: 5px;
-}
-
-.complete-button {
-    background-color: #c07fff;
-    color: rgba(255, 0, 0, 0.87);
-    margin-left: 10px;
 }
 
 .completed-item {
