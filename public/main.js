@@ -45,9 +45,9 @@ function reloadTodoList() {
             listItem.textContent = todo.title;
             listItem.className = todo.complete ? "complete" : "incomplete";
 
-            var deleteButton = buttonFactory("delete", "deleteButton", deleteEntry, todo);
+            var deleteButton = buttonFactory("delete", "delete-button", deleteEntry, todo);
 
-            var completeButton = buttonFactory("complete", "completeButton", completeEntry, todo);
+            var completeButton = buttonFactory("complete", "complete-button", completeEntry, todo);
 
             listItem.appendChild(deleteButton);
             listItem.appendChild(completeButton);

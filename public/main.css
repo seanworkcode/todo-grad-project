@@ -24,14 +24,14 @@ h1 {
     color: rgba(255, 255, 255, 0.87);
 }
 
-.deleteButton{
+.delete-button{
     margin-left: 10px;
     color: white;
     background-color: rgba(52, 114, 162, 1);
     font-family: cursive;
 }
 
-.completeButton{
+.complete-button{
     margin-left: 10px;
     color: white;
     background-color: rgba(32, 105, 33, 1);
