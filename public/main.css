@@ -58,3 +58,7 @@ h1 {
     background-color: royalblue;
     color: white;
 }
+
+.hidden{
+    visibility: hidden;
+}
