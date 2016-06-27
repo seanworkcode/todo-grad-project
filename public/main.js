@@ -53,11 +53,7 @@ function makeButton(content, cssClass, onClick) {
 
 function countIncompletes(todos, countLabel) {
     countLabel.textContent = todos.reduce(function(p, c) {
-        if (!c.isComplete) {
-            return p + 1;
-        } else {
-            return p;
-        }
+        return (!c.isComplete ? p + 1 : p);
     }, 0);
 }
 
