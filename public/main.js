@@ -118,17 +118,20 @@ function reloadTodoList() {
 }
 
 function deleteTodo(todo) {
-    var createRequest = new XMLHttpRequest();
-    createRequest.open("DELETE", "/api/todo/" + todo.id);
-    createRequest.setRequestHeader("Content-type", "application/json");
-    createRequest.onload = function() {
-        if (this.status === 200) {
+    fetch("/api/todo/" + todo.id, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json"
+        }
+    }).then(function(response) {
+        if (response.status === 200) {
             reloadTodoList();
         } else {
-            error.textContent = "Failed to delete. Server returned " + this.status + " - " + this.responseText;
+            throw Error("Failed to delete. Server returned " + response.status + " - " + response.statusText);
         }
-    };
-    createRequest.send();
+    }).catch(function(err) {
+        error.textContent = err;
+    });
 }
 
 function deleteCompletedTodos() {
