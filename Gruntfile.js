@@ -3,8 +3,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-jscs");
     grunt.loadNpmTasks("grunt-mocha-test");
     grunt.loadNpmTasks("grunt-mocha-istanbul");
-    grunt.loadNpmTasks('grunt-connect');
-    grunt.loadNpmTasks('grunt-run');
+    grunt.loadNpmTasks("grunt-run");
 
     var testOutputLocation = process.env.CIRCLE_TEST_REPORTS || "test_output";
     var artifactsLocation = "build_artifacts";
