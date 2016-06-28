@@ -21,19 +21,23 @@ form.onsubmit = function(event) {
 };
 
 function createTodo(title, callback) {
-    var createRequest = new XMLHttpRequest();
-    createRequest.open("POST", "/api/todo");
-    createRequest.setRequestHeader("Content-type", "application/json");
-    createRequest.send(JSON.stringify({
-        title: title
-    }));
-    createRequest.onload = function() {
-        if (this.status === 201) {
+    fetch("/api/todo", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+            title: title
+        })
+    }).then(function(response) {
+        if (response.status === 201) {
             callback();
         } else {
-            error.textContent = "Failed to create item. Server returned " + this.status + " - " + this.responseText;
+            throw Error("Failed to create item. Server returned " + response.status + " - " + response.statusText);
         }
-    };
+    }).catch(function(err) {
+        error.textContent = err;
+    });
 }
 
 var requestsRunning = 0;

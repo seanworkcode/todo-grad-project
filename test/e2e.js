@@ -53,7 +53,7 @@ testing.describe("end to end", function() {
             helpers.navigateToSite();
             helpers.addTodo("New todo item");
             helpers.getErrorText().then(function(text) {
-                assert.equal(text, "Failed to create item. Server returned 500 - Internal Server Error");
+                assert.equal(text, "Error: Failed to create item. Server returned 500 - Internal Server Error");
             });
         });
         testing.it("can be done multiple times", function() {
