@@ -9,6 +9,9 @@ var FILTER_ALL = 0;
 var FILTER_ACTIVE = 1;
 var FILTER_COMPLETED = 2;
 var filter;
+var timer = setInterval(function() {
+    reloadTodoList();
+}, 1000);
 
 setFilter(FILTER_ALL);
 
@@ -81,7 +84,7 @@ function updateIncompletes(todos, countLabel) {
 }
 
 function reloadTodoList() {
-    todoListPlaceholder.style.display = "block";
+    //todoListPlaceholder.style.display = "block";
     getTodoList(function(todos) {
         var filteredTodos;
         var bufferTodoList = document.createElement("ul");
