@@ -7,7 +7,8 @@ var countLabel = document.getElementById("count-label");
 var FILTER_ALL = 0;
 var FILTER_ACTIVE = 1;
 var FILTER_COMPLETED = 2;
-var filter = FILTER_ALL;
+
+setFilter(FILTER_ALL);
 
 form.onsubmit = function(event) {
     var title = todoTitle.value;
