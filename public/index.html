@@ -16,9 +16,9 @@
             <form id="todo-form">
                 <input id="new-todo" placeholder="What needs to be done?" autofocus>
                 <input id="submit-todo" type="submit" value="Create" class="button">
-                <input id="filter-all" value="All" type="button" class="filter-button">
-                <input id="filter-active" value="Active" type="button" class="filter-button">
-                <input id="filter-completed" value="Completed" type="button" class="filter-button">
+                <input id="filter-all" value="All" type="button" class="filter-button" onclick="setFilter(FILTER_ALL)">
+                <input id="filter-active" value="Active" type="button" class="filter-button" onclick="setFilter(FILTER_ACTIVE)">
+                <input id="filter-completed" value="Completed" type="button" class="filter-button" onclick="setFilter(FILTER_COMPLETED)">
             </form>
             <ul id="todo-list"></ul>
             <div id="error"></div>
