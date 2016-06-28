@@ -159,15 +159,23 @@ function deleteCompletedTodos() {
 }
 
 function completeTodo(todo) {
-    var createRequest = new XMLHttpRequest();
-    createRequest.open("PUT", "/api/todo/" + todo.id);
-    createRequest.setRequestHeader("Content-type", "application/json");
-    createRequest.onload = function() {
-        if (this.status === 200) {
+    fetch("/api/todo/" + todo.id, {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+            isComplete: !todo.isComplete
+        })
+    }).then(function(response) {
+        if (response.status === 200) {
             reloadTodoList();
+        } else {
+            throw Error("Failed to complete. Server returned " + response.status + " - " + response.statusText);
         }
-    };
-    createRequest.send(JSON.stringify({isComplete: !todo.isComplete}));
+    }).catch(function(err) {
+        error.textContent = err;
+    });
 }
 
 function setFilter(filterType) {
