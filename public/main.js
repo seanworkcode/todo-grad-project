@@ -59,15 +59,15 @@ function makeButton(content, onClick) {
 function updateIncompletes(todos, countLabel) {
     countLabel.textContent = "";
     var incompleteCount = "0";
-    if(todos.length > 0){
-        incompleteCount = todos.reduce(function(p,c){
+    if (todos.length > 0) {
+        incompleteCount = todos.reduce(function(p, c) {
             return (!c.isComplete ? p + 1 : p);
         }, 0);
     }
     countLabel.textContent = incompleteCount.toString();
-    if(incompleteCount !== todos.length && todos.length > 0){
+    if (incompleteCount !== todos.length && todos.length > 0) {
         countLabel.appendChild(makeButton("Delete Completed", deleteCompletedTodos));
-    };
+    }
 
 }
 
