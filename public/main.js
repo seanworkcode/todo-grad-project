@@ -39,19 +39,20 @@ function createTodo(title, callback) {
 var requestsRunning = 0;
 function getTodoList(callback) {
     requestsRunning++;
-    var createRequest = new XMLHttpRequest();
-    createRequest.open("GET", "/api/todo");
-    createRequest.onload = function() {
-        if (this.status === 200) {
+    fetch("/api/todo", {
+        method: "GET"
+    }).then(function(response) {
+        if (response.status === 200) {
             if (requestsRunning < 2) {
-                callback(JSON.parse(this.responseText));
+                response.json().then(callback);
             }
             requestsRunning--;
         } else {
-            error.textContent = "Failed to get list. Server returned " + this.status + " - " + this.responseText;
+            throw Error("Failed to get list. Server returned " + response.status + " - " + response.statusText);
         }
-    };
-    createRequest.send();
+    }).catch(function(err) {
+        error.textContent = err;
+    });
 }
 
 function makeButton(content, onClick) {
