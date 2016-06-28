@@ -95,7 +95,7 @@ function reloadTodoList() {
                 });
                 break;
             default:
-            filteredTodos = todos;
+                filteredTodos = todos;
         }
         filteredTodos.forEach(function(todo) {
             var listItem = document.createElement("li");
