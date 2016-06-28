@@ -67,7 +67,8 @@ describe("server", function() {
                 request.get(todoListUrl, function(error, response, body) {
                     assert.deepEqual(JSON.parse(body), [{
                         title: "This is a TODO item",
-                        id: "0"
+                        id: "0",
+                        isComplete: false
                     }]);
                     done();
                 });
@@ -106,6 +107,27 @@ describe("server", function() {
                         assert.deepEqual(JSON.parse(body), []);
                         done();
                     });
+                });
+            });
+        });
+    });
+    describe("update a todo", function() {
+        it("responds with status code 404 if there is no such item", function(done) {
+            request.put(todoListUrl + "/0", function(error, response) {
+                assert.equal(response.statusCode, 404);
+                done();
+            });
+        });
+        it("responds with status code 200", function(done) {
+            request.post({
+                url: todoListUrl,
+                json: {
+                    title: "DONALD TRUMPET IS MY NEPHEW"
+                }
+            }, function() {
+                request.put(todoListUrl + "/0", function(error, response) {
+                    assert.equal(response.statusCode, 200);
+                    done();
                 });
             });
         });
