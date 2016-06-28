@@ -98,6 +98,7 @@ function reloadTodoList() {
                 });
                 break;
             default:
+                window.alert("Invalid filter type, stop that you ninny");
                 filteredTodos = todos;
         }
         filteredTodos.forEach(function(todo) {
@@ -166,5 +167,3 @@ function setFilter(filterType) {
     filter = filterType;
     reloadTodoList();
 }
-
-reloadTodoList();
