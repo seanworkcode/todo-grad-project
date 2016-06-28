@@ -24,13 +24,6 @@ h1 {
     color: rgba(140, 255, 83, 0.87);
 }
 
-.inCompleteCounter {
-    align: center;
-    padding: 10px;
-    background-color: #4a412a;
-    color: white;
-}
-
 .button {
     background-color: #9b32ff;
     color: rgba(140, 255, 83, 0.87);
@@ -38,6 +31,22 @@ h1 {
     margin-bottom: 5px;
     border-radius: 10px;
     box-shadow: inset 0 0 10px #000000;
+}
+
+.filter-button {
+    background-color: rgba(140, 255, 83, 0.87);
+    color: #9b32ff;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px #000000;
+}
+
+
+.incomplete-counter {
+    padding: 10px;
+    background-color: #4a412a;
+    color: white;
 }
 
 .completed-item {
