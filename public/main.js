@@ -4,6 +4,7 @@ var form = document.getElementById("todo-form");
 var todoTitle = document.getElementById("new-todo");
 var error = document.getElementById("error");
 var countLabel = document.getElementById("count-label");
+var section = document.getElementById("todo-list-section");
 var FILTER_ALL = 0;
 var FILTER_ACTIVE = 1;
 var FILTER_COMPLETED = 2;
@@ -80,12 +81,11 @@ function updateIncompletes(todos, countLabel) {
 }
 
 function reloadTodoList() {
-    while (todoList.firstChild) {
-        todoList.removeChild(todoList.firstChild);
-    }
     todoListPlaceholder.style.display = "block";
     getTodoList(function(todos) {
         var filteredTodos;
+        var bufferTodoList = document.createElement("ul");
+        bufferTodoList.id = "todo-list";
         todoListPlaceholder.style.display = "none";
         updateIncompletes(todos, countLabel);
         switch (filter) {
@@ -112,8 +112,10 @@ function reloadTodoList() {
             }
             listItem.appendChild(completeBtn);
             listItem.appendChild(deleteBtn);
-            todoList.appendChild(listItem);
+            bufferTodoList.appendChild(listItem);
         });
+        section.replaceChild(bufferTodoList, todoList);
+        todoList = bufferTodoList;
     });
 }
 
