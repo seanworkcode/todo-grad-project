@@ -4,7 +4,6 @@ var form = document.getElementById("todo-form");
 var todoTitle = document.getElementById("new-todo");
 var error = document.getElementById("error");
 var countLabel = document.getElementById("count-label");
-var deleteCompleted = document.getElementById("delete-completed");
 
 form.onsubmit = function(event) {
     var title = todoTitle.value;
@@ -49,18 +48,24 @@ function getTodoList(callback) {
     createRequest.send();
 }
 
-function makeButton(content, cssClass, onClick) {
+function makeButton(content, onClick) {
     var button = document.createElement("button");
     button.textContent = content.toString();
-    button.className = cssClass.toString();
+    button.className = "button";
     button.addEventListener("click", onClick);
     return button;
 }
 
 function updateIncompletes(todos, countLabel) {
-    countLabel.textContent = todos.filter(function(todo) {
-        return todo.isComplete === false;
-    }).length.toString();
+    countLabel.textContent = "";
+    var incompleteCount = todos.reduce(function(p, c) {
+        return (!c.isComplete ? p + 1 : p);
+    }, 0);
+    countLabel.textContent = incompleteCount.toString();
+    if (incompleteCount !== todos.length) {
+        countLabel.appendChild(makeButton("Delete Completed", deleteCompletedTodos));
+    }
+
 }
 
 function reloadTodoList() {
@@ -73,8 +78,8 @@ function reloadTodoList() {
         updateIncompletes(todos, countLabel);
         todos.forEach(function(todo) {
             var listItem = document.createElement("li");
-            var deleteBtn = makeButton("Delete", "delete-button", deleteTodo.bind(null, todo));
-            var completeBtn = makeButton("Complete", "complete-button", completeTodo.bind(null, todo));
+            var deleteBtn = makeButton("Delete", deleteTodo.bind(null, todo));
+            var completeBtn = makeButton("Complete", completeTodo.bind(null, todo));
             listItem.textContent = todo.title;
             if (todo.isComplete) {
                 listItem.className = "completed-item";
