@@ -25,6 +25,7 @@ h1 {
 }
 
 .inCompleteCounter {
+    align: center;
     padding: 10px;
     background-color: #4a412a;
     color: white;
