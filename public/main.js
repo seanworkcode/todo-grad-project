@@ -84,9 +84,6 @@ function reloadTodoList() {
         todoListPlaceholder.style.display = "none";
         updateIncompletes(todos, countLabel);
         switch (filter) {
-            case FILTER_ALL:
-                filteredTodos = todos;
-                break;
             case FILTER_ACTIVE:
                 filteredTodos = todos.filter(function(todo) {
                     return !todo.isComplete;
@@ -98,8 +95,7 @@ function reloadTodoList() {
                 });
                 break;
             default:
-                window.alert("Invalid filter type, stop that you ninny");
-                filteredTodos = todos;
+            filteredTodos = todos;
         }
         filteredTodos.forEach(function(todo) {
             var listItem = document.createElement("li");
